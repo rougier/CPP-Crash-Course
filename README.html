@@ -1,0 +1,1086 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.8: http://docutils.sourceforge.net/" />
+<title>C++ crash course for C programmers</title>
+<meta name="author" content="Nicolas P. Rougier" />
+<link rel="stylesheet" href="stylesheet.css" type="text/css" />
+</head>
+<body>
+<div class="document" id="c-crash-course-for-c-programmers">
+<h1 class="title">C++ crash course for C programmers</h1>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Author:</th>
+<td><a class="first reference external" href="http://www.loria.fr/~rougier">Nicolas P. Rougier</a></td></tr>
+<tr class="field"><th class="docinfo-name">Sources:</th><td class="field-body"><a class="reference external" href="crash-course.rst">crash-course.rst</a></td>
+</tr>
+</tbody>
+</table>
+<div class="contents local topic" id="contents">
+<ul class="auto-toc simple">
+<li><a class="reference internal" href="#foreword" id="id6">1&nbsp;&nbsp;&nbsp;Foreword</a></li>
+<li><a class="reference internal" href="#from-c-to-c" id="id7">2&nbsp;&nbsp;&nbsp;From C to C++</a><ul class="auto-toc">
+<li><a class="reference internal" href="#input-output" id="id8">2.1&nbsp;&nbsp;&nbsp;Input/Output</a></li>
+<li><a class="reference internal" href="#new-delete" id="id9">2.2&nbsp;&nbsp;&nbsp;New/Delete</a></li>
+<li><a class="reference internal" href="#references" id="id10">2.3&nbsp;&nbsp;&nbsp;References</a></li>
+<li><a class="reference internal" href="#default-parameters" id="id11">2.4&nbsp;&nbsp;&nbsp;Default parameters</a></li>
+<li><a class="reference internal" href="#namespaces" id="id12">2.5&nbsp;&nbsp;&nbsp;Namespaces</a></li>
+<li><a class="reference internal" href="#overloading" id="id13">2.6&nbsp;&nbsp;&nbsp;Overloading</a></li>
+<li><a class="reference internal" href="#const-inline" id="id14">2.7&nbsp;&nbsp;&nbsp;Const &amp; inline</a></li>
+<li><a class="reference internal" href="#mixing-c-and-c" id="id15">2.8&nbsp;&nbsp;&nbsp;Mixing C and C++</a></li>
+<li><a class="reference internal" href="#exercises" id="id16">2.9&nbsp;&nbsp;&nbsp;Exercises</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#classes" id="id17">3&nbsp;&nbsp;&nbsp;Classes</a><ul class="auto-toc">
+<li><a class="reference internal" href="#constructors" id="id18">3.1&nbsp;&nbsp;&nbsp;Constructors</a></li>
+<li><a class="reference internal" href="#destructor" id="id19">3.2&nbsp;&nbsp;&nbsp;Destructor</a></li>
+<li><a class="reference internal" href="#access-control" id="id20">3.3&nbsp;&nbsp;&nbsp;Access control</a></li>
+<li><a class="reference internal" href="#initialization-list" id="id21">3.4&nbsp;&nbsp;&nbsp;Initialization list</a></li>
+<li><a class="reference internal" href="#operator-overloading" id="id22">3.5&nbsp;&nbsp;&nbsp;Operator overloading</a></li>
+<li><a class="reference internal" href="#friends" id="id23">3.6&nbsp;&nbsp;&nbsp;Friends</a></li>
+<li><a class="reference internal" href="#exercices" id="id24">3.7&nbsp;&nbsp;&nbsp;Exercices</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inheritance" id="id25">4&nbsp;&nbsp;&nbsp;Inheritance</a><ul class="auto-toc">
+<li><a class="reference internal" href="#basics" id="id26">4.1&nbsp;&nbsp;&nbsp;Basics</a></li>
+<li><a class="reference internal" href="#virtual-methods" id="id27">4.2&nbsp;&nbsp;&nbsp;Virtual methods</a></li>
+<li><a class="reference internal" href="#abstract-classes" id="id28">4.3&nbsp;&nbsp;&nbsp;Abstract classes</a></li>
+<li><a class="reference internal" href="#multiple-inheritance" id="id29">4.4&nbsp;&nbsp;&nbsp;Multiple inheritance</a></li>
+<li><a class="reference internal" href="#id1" id="id30">4.5&nbsp;&nbsp;&nbsp;Exercices</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exceptions" id="id31">5&nbsp;&nbsp;&nbsp;Exceptions</a><ul class="auto-toc">
+<li><a class="reference internal" href="#the-zen-of-python" id="id32">5.1&nbsp;&nbsp;&nbsp;The Zen of Python</a></li>
+<li><a class="reference internal" href="#catch-me-if-you-can" id="id33">5.2&nbsp;&nbsp;&nbsp;Catch me if you can</a></li>
+<li><a class="reference internal" href="#creating-your-own-exception" id="id34">5.3&nbsp;&nbsp;&nbsp;Creating your own exception</a></li>
+<li><a class="reference internal" href="#standard-exceptions" id="id35">5.4&nbsp;&nbsp;&nbsp;Standard exceptions</a></li>
+<li><a class="reference internal" href="#id2" id="id36">5.5&nbsp;&nbsp;&nbsp;Exercices</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#streams" id="id37">6&nbsp;&nbsp;&nbsp;Streams</a><ul class="auto-toc">
+<li><a class="reference internal" href="#iostream-and-ios" id="id38">6.1&nbsp;&nbsp;&nbsp;iostream and ios</a></li>
+<li><a class="reference internal" href="#class-input-output" id="id39">6.2&nbsp;&nbsp;&nbsp;Class input/output</a></li>
+<li><a class="reference internal" href="#working-with-files" id="id40">6.3&nbsp;&nbsp;&nbsp;Working with files</a></li>
+<li><a class="reference internal" href="#working-with-strings" id="id41">6.4&nbsp;&nbsp;&nbsp;Working with strings</a></li>
+<li><a class="reference internal" href="#id3" id="id42">6.5&nbsp;&nbsp;&nbsp;Exercices</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#templates" id="id43">7&nbsp;&nbsp;&nbsp;Templates</a><ul class="auto-toc">
+<li><a class="reference internal" href="#template-parameters" id="id44">7.1&nbsp;&nbsp;&nbsp;Template parameters</a></li>
+<li><a class="reference internal" href="#template-function" id="id45">7.2&nbsp;&nbsp;&nbsp;Template function</a></li>
+<li><a class="reference internal" href="#template-class" id="id46">7.3&nbsp;&nbsp;&nbsp;Template class</a></li>
+<li><a class="reference internal" href="#template-specialization" id="id47">7.4&nbsp;&nbsp;&nbsp;Template specialization</a></li>
+<li><a class="reference internal" href="#id4" id="id48">7.5&nbsp;&nbsp;&nbsp;Exercices</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#standard-template-library" id="id49">8&nbsp;&nbsp;&nbsp;Standard Template Library</a><ul class="auto-toc">
+<li><a class="reference internal" href="#containers" id="id50">8.1&nbsp;&nbsp;&nbsp;Containers</a></li>
+<li><a class="reference internal" href="#iterators" id="id51">8.2&nbsp;&nbsp;&nbsp;Iterators</a></li>
+<li><a class="reference internal" href="#algorithms" id="id52">8.3&nbsp;&nbsp;&nbsp;Algorithms</a></li>
+<li><a class="reference internal" href="#id5" id="id53">8.4&nbsp;&nbsp;&nbsp;Exercices</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#external-links" id="id54">9&nbsp;&nbsp;&nbsp;External links</a></li>
+</ul>
+</div>
+<div class="section" id="foreword">
+<h1>1&nbsp;&nbsp;&nbsp;Foreword</h1>
+<p>This is an introduction to C++ for C programmers:</p>
+<ul>
+<li><p class="first">If you can't understand the code below, you'd better start with a C tutorial.</p>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;stdio.h&gt;
+</span>
+<span class="kt">void</span> <span class="n">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre>
+</li>
+<li><p class="first">If you don't know what are the stack and the heap, you'd better have a look at
+some architecture &amp; system introduction.</p>
+</li>
+<li><p class="first">If you know java, that might help a bit.</p>
+</li>
+<li><p class="first">If you think <a class="reference external" href="http://www.python.org">python</a> is cool, you're right, but
+still, this is not the place.</p>
+</li>
+<li><p class="first">If you never heard about <a class="reference external" href="http://www2.research.att.com/~bs/">Bjarne Stroustrup</a>, you might be at the right place.</p>
+</li>
+<li><p class="first">Here is a list of C++ specific keywords:</p>
+<pre class="literal-block">
+asm         dynamic_cast  namespace  reinterpret_cast  try
+bool        explicit      new        static_cast       typeid
+catch       false         operator   template          typename
+class       friend        private    this              using
+const_cast  inline        public     throw             virtual
+delete      mutable       protected  true              wchar_t
+</pre>
+</li>
+</ul>
+</div>
+<div class="section" id="from-c-to-c">
+<h1>2&nbsp;&nbsp;&nbsp;From C to C++</h1>
+<p>Even if C++ is slanted toward object-oriented programming (OOP), you can
+nevertheless use any c++ compiler to compile c code and benefits from some c++
+goodies.</p>
+<div class="section" id="input-output">
+<h2>2.1&nbsp;&nbsp;&nbsp;Input/Output</h2>
+<p>Prefer the use of <tt class="docutils literal">&lt;iostream&gt;</tt> for input/output operations (see stream
+section for explanation).</p>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="kt">int</span> <span class="n">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Please enter an integer value: &quot;</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The value you entered is &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span>  <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="new-delete">
+<h2>2.2&nbsp;&nbsp;&nbsp;New/Delete</h2>
+<p>The <tt class="docutils literal">new</tt> and <tt class="docutils literal">delete</tt> keywords are used to allocate and free memory. They
+are &quot;object-aware&quot; so you'd better use them instead of <tt class="docutils literal">malloc</tt> and
+<tt class="docutils literal">free</tt>. In any case, never cross the streams (new/free or malloc/delete).</p>
+<pre class="code c++ literal-block">
+<span class="kt">int</span> <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">;</span>
+<span class="k">delete</span> <span class="n">a</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+<span class="k">delete</span> <span class="p">[]</span> <span class="n">b</span><span class="p">;</span>
+</pre>
+<p><tt class="docutils literal">delete</tt> does two things: it calls the destructor and it deallocates the
+memory.</p>
+</div>
+<div class="section" id="references">
+<h2>2.3&nbsp;&nbsp;&nbsp;References</h2>
+<p>A reference allows to declare an alias to another variable. As long as the
+aliased variable lives, you can use indifferently the variable or the alias.</p>
+<pre class="code c++ literal-block">
+<span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">&amp;</span> <span class="n">foo</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+
+<span class="n">foo</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre>
+<p>References are extremely useful when used with function arguments since it
+saves the cost of copying parameters into the stack when calling the function.</p>
+</div>
+<div class="section" id="default-parameters">
+<h2>2.4&nbsp;&nbsp;&nbsp;Default parameters</h2>
+<p>You can specify default values for function parameters. When the function is
+called with fewer parameters, default values are used.</p>
+<pre class="code c++ literal-block">
+<span class="kt">float</span> <span class="n">foo</span><span class="p">(</span> <span class="kt">float</span> <span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="kt">float</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="kt">float</span> <span class="n">c</span><span class="o">=</span><span class="mi">2</span> <span class="p">)</span>
+<span class="p">{</span><span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="n">c</span><span class="p">;}</span>
+
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span>
+     <span class="o">&lt;&lt;</span> <span class="n">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span>
+     <span class="o">&lt;&lt;</span> <span class="n">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre>
+<p>You should obtain values 4, 5 and 6.</p>
+</div>
+<div class="section" id="namespaces">
+<h2>2.5&nbsp;&nbsp;&nbsp;Namespaces</h2>
+<p>Namespace allows to group classes, functions and variable under a common scope
+name that can be referenced elsewhere.</p>
+<pre class="code c++ literal-block">
+<span class="k">namespace</span> <span class="n">first</span>  <span class="p">{</span> <span class="kt">int</span> <span class="n">var</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="p">}</span>
+<span class="k">namespace</span> <span class="n">second</span> <span class="p">{</span> <span class="kt">int</span> <span class="n">var</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="p">}</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">first</span><span class="o">::</span><span class="n">var</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">second</span><span class="o">::</span><span class="n">var</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre>
+<p>You should obtain values 3 and 5. There exists some standard namespace in the
+standard template library such as std.</p>
+</div>
+<div class="section" id="overloading">
+<h2>2.6&nbsp;&nbsp;&nbsp;Overloading</h2>
+<p>Function overloading refers to the possibility of creating multiple functions
+with the same name as long as they have different parameters (type and/or
+number).</p>
+<pre class="code c++ literal-block">
+<span class="kt">float</span> <span class="n">add</span><span class="p">(</span> <span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="kt">float</span> <span class="n">b</span> <span class="p">)</span>
+<span class="p">{</span><span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;}</span>
+
+<span class="kt">int</span> <span class="n">add</span><span class="p">(</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span> <span class="p">)</span>
+<span class="p">{</span><span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;}</span>
+</pre>
+<p>It is not legal to overload a function based on the return type (but you can do it
+<a class="reference external" href="http://stackoverflow.com/questions/442026/function-overloading-by-return-type">anyway</a>)</p>
+</div>
+<div class="section" id="const-inline">
+<h2>2.7&nbsp;&nbsp;&nbsp;Const &amp; inline</h2>
+<p>Defines and macros are bad if not used properly as illustrated below</p>
+<pre class="code c++ literal-block">
+<span class="cp">#define SQUARE(x) x*x
+</span>
+<span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">SQUARE</span><span class="p">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">3</span><span class="p">);</span>
+</pre>
+<p>For constants, prefer the const notation:</p>
+<pre class="code c++ literal-block">
+<span class="k">const</span> <span class="kt">int</span> <span class="n">two</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</pre>
+<p>For macros, prefer the inline notation:</p>
+<pre class="code c++ literal-block">
+<span class="kt">int</span> <span class="kr">inline</span> <span class="n">square</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="mixing-c-and-c">
+<h2>2.8&nbsp;&nbsp;&nbsp;Mixing C and C++</h2>
+<pre class="code c++ literal-block">
+<span class="cp">#ifdef __cplusplus
+</span><span class="k">extern</span> <span class="s">&quot;C&quot;</span> <span class="p">{</span>
+<span class="cp">#endif
+
+#include &quot;some-c-code.h&quot;
+
+#ifdef __cplusplus
+</span><span class="p">}</span>
+<span class="cp">#endif
+</span>
+</pre>
+</div>
+<div class="section" id="exercises">
+<h2>2.9&nbsp;&nbsp;&nbsp;Exercises</h2>
+<ol class="arabic">
+<li><p class="first">Write a basic makefile for compiling sources</p>
+<p><strong>solution</strong>: <a class="reference external" href="sources/Makefile">Makefile</a></p>
+</li>
+<li><p class="first">How would you declare:</p>
+</li>
+</ol>
+<blockquote>
+<ul class="simple">
+<li>A pointer to a char</li>
+<li>A constant pointer to a char</li>
+<li>A pointer to a constant char</li>
+<li>A constant pointer to a constant char</li>
+<li>A reference to a char</li>
+<li>A reference to a constant char</li>
+</ul>
+<p><strong>solution</strong>: <a class="reference external" href="sources/crash-course-2.1.cc">crash-course-2.1.cc</a></p>
+</blockquote>
+<ol class="arabic simple" start="3">
+<li>Create  a two-dimensional array of  integers (size is  n x n), fill  it with
+corresponding indices (a[i][j] = i*n+j), test it and finally, delete it.</li>
+</ol>
+<blockquote>
+<strong>solution</strong>: <a class="reference external" href="sources/crash-course-2.2.cc">crash-course-2.2.cc</a></blockquote>
+<ol class="arabic simple" start="4">
+<li>Write a function that swap two integers, then two pointers.</li>
+</ol>
+<blockquote>
+<strong>solution</strong>: <a class="reference external" href="sources/crash-course-2.3.cc">crash-course-2.3.cc</a></blockquote>
+<ol class="arabic" start="5">
+<li><p class="first">Is this legal ?</p>
+<pre class="code c++ literal-block">
+<span class="kt">int</span> <span class="n">add</span><span class="p">(</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span> <span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">add</span><span class="p">(</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">int</span> <span class="n">c</span><span class="o">=</span><span class="mi">0</span> <span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="n">c</span><span class="p">;</span> <span class="p">}</span>
+</pre>
+</li>
+</ol>
+<blockquote>
+<strong>solution</strong>: <a class="reference external" href="sources/crash-course-2.4.cc">crash-course-2.4.cc</a></blockquote>
+<ol class="arabic simple" start="6">
+<li>Write a <tt class="docutils literal">const correct</tt> division function.</li>
+</ol>
+<blockquote>
+<strong>solution</strong>: <a class="reference external" href="sources/crash-course-2.5.cc">crash-course-2.5.cc</a></blockquote>
+<ol class="arabic simple" start="7">
+<li>What's the difference between <tt class="docutils literal">int const* p</tt>, <tt class="docutils literal">int* const p</tt>
+and <tt class="docutils literal">int const* const p</tt> ?</li>
+</ol>
+<blockquote>
+<strong>solution</strong>: <a class="reference external" href="sources/crash-course-2.6.cc">crash-course-2.6.cc</a></blockquote>
+</div>
+</div>
+<div class="section" id="classes">
+<h1>3&nbsp;&nbsp;&nbsp;Classes</h1>
+<p>A class migh be considered as an extended concept of a data structure: instead
+of holding only data, it can hold both data and functions. An object is an
+instantiation of a class. By default, all attributes and functions of a class
+are private (see below Access control). If you want a public default behavior,
+you can use keyword <tt class="docutils literal">struct</tt> instead of keyword <tt class="docutils literal">class</tt> in the declaration.</p>
+<pre class="code c++ literal-block">
+<span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">attribute</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">function</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span> <span class="p">{</span> <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">Bar</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">attribute</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">function</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span> <span class="p">{</span> <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="n">Foo</span> <span class="n">foo</span><span class="p">;</span>
+<span class="n">foo</span><span class="p">.</span><span class="n">attribute</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// WRONG
+</span>
+<span class="n">Bar</span> <span class="n">bar</span><span class="p">;</span>
+<span class="n">bar</span><span class="p">.</span><span class="n">attribute</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">// OK
+</span>
+</pre>
+<div class="section" id="constructors">
+<h2>3.1&nbsp;&nbsp;&nbsp;Constructors</h2>
+<p>It is possible to specify zero, one or more constructors for the class.</p>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Foo</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span>
+    <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Foo constructor 1 called&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+    <span class="n">Foo</span><span class="p">(</span> <span class="kt">int</span> <span class="n">value</span> <span class="p">)</span>
+    <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Foo constructor 2 called&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Foo</span> <span class="n">foo_1</span><span class="p">,</span> <span class="n">foo_2</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="destructor">
+<h2>3.2&nbsp;&nbsp;&nbsp;Destructor</h2>
+<p>There can be only one destructor per class. It takes no argument and returns
+nothing.</p>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="o">~</span><span class="n">Foo</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span>
+    <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Foo destructor called&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Foo</span> <span class="n">foo</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+<p>Note that you generally never need to explicitly call a destructor.</p>
+</div>
+<div class="section" id="access-control">
+<h2>3.3&nbsp;&nbsp;&nbsp;Access control</h2>
+<p>You can have fine control over who is granted access to a class function or
+attribute by specifying an explicit access policy:</p>
+<ul class="simple">
+<li><strong>public</strong>:    Anyone is granted access</li>
+<li><strong>protected</strong>: Only derived classes are granted access</li>
+<li><strong>private</strong>:   No one but friends are granted access</li>
+</ul>
+</div>
+<div class="section" id="initialization-list">
+<h2>3.4&nbsp;&nbsp;&nbsp;Initialization list</h2>
+<p>Object's member should be initialized using initialization lists</p>
+<pre class="code c++ literal-block">
+<span class="k">class</span> <span class="nc">Foo</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">_value</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Foo</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="n">_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span> <span class="p">};</span>
+<span class="p">};</span>
+</pre>
+<p>It's cheaper, better and faster.</p>
+</div>
+<div class="section" id="operator-overloading">
+<h2>3.5&nbsp;&nbsp;&nbsp;Operator overloading</h2>
+<pre class="code c++ literal-block">
+<span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">_value</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Foo</span><span class="p">(</span> <span class="kt">int</span> <span class="n">value</span> <span class="p">)</span> <span class="o">:</span> <span class="n">_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span> <span class="p">};</span>
+
+    <span class="n">Foo</span> <span class="k">operator</span><span class="o">+</span> <span class="p">(</span> <span class="k">const</span> <span class="n">Foo</span> <span class="o">&amp;</span> <span class="n">other</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Foo</span><span class="p">(</span> <span class="n">_value</span><span class="o">+</span> <span class="n">other</span><span class="p">.</span><span class="n">_value</span> <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">Foo</span> <span class="k">operator</span><span class="o">*</span> <span class="p">(</span> <span class="k">const</span> <span class="n">Foo</span> <span class="o">&amp;</span> <span class="n">other</span> <span class="p">);</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Foo</span><span class="p">(</span> <span class="n">_value</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">_value</span> <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="friends">
+<h2>3.6&nbsp;&nbsp;&nbsp;Friends</h2>
+<p>Friends are either functions or other classes that are granted privileged
+access to a class.</p>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">friend</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span> <span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">output</span><span class="p">,</span>
+                                      <span class="n">Foo</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">that</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">output</span> <span class="o">&lt;&lt;</span> <span class="n">that</span><span class="p">.</span><span class="n">_value</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">double</span> <span class="n">_value</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">Foo</span> <span class="n">foo</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Foo object: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">foo</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="exercices">
+<h2>3.7&nbsp;&nbsp;&nbsp;Exercices</h2>
+<ol class="arabic">
+<li><p class="first">Why the following code doesn't compile ?</p>
+<pre class="code c++ literal-block">
+<span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span> <span class="n">Foo</span> <span class="p">()</span> <span class="p">{</span> <span class="p">};</span> <span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Foo</span> <span class="n">foo</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+<p><strong>solution</strong>: <a class="reference external" href="sources/crash-course-3.1.cc">crash-course-3.1.cc</a></p>
+</li>
+<li><p class="first">Write a <tt class="docutils literal">Foo</tt> class with default and copy constructors and add also an
+assignment operator. Write some code to highlight the use of each of them.</p>
+<p><strong>solution</strong>: <a class="reference external" href="sources/crash-course-3.2.cc">crash-course-3.2.cc</a></p>
+</li>
+<li><p class="first">Write a <tt class="docutils literal">Point</tt> class that can be constructed using cartesian or polar
+coordinates.</p>
+<p><strong>solution</strong>: <a class="reference external" href="sources/crash-course-3.3.cc">crash-course-3.3.cc</a></p>
+</li>
+<li><p class="first">Write a <tt class="docutils literal">Foo</tt> class and provide it with an input method.</p>
+<p><strong>solution</strong>: <a class="reference external" href="sources/crash-course-3.4.cc">crash-course-3.4.cc</a></p>
+</li>
+<li><p class="first">Is is possible to write something like <tt class="docutils literal"><span class="pre">foo.method1().method2()</span></tt> ?</p>
+<p><strong>solution</strong>: <a class="reference external" href="sources/crash-course-3.5.cc">crash-course-3.5.cc</a></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="inheritance">
+<h1>4&nbsp;&nbsp;&nbsp;Inheritance</h1>
+<div class="section" id="basics">
+<h2>4.1&nbsp;&nbsp;&nbsp;Basics</h2>
+<p>Inheritance is done at the class definition level by specifying the base class
+and the type of inheritance.</p>
+<pre class="code c++ literal-block">
+<span class="k">class</span> <span class="nc">Foo</span>                            <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">};</span>
+<span class="k">class</span> <span class="nc">Bar_public</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Foo</span>        <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">};</span>
+<span class="k">class</span> <span class="nc">Bar_private</span> <span class="o">:</span> <span class="k">private</span> <span class="n">Foo</span>      <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">};</span>
+<span class="k">class</span> <span class="nc">Bar_protected</span> <span class="o">:</span> <span class="k">protected</span> <span class="n">Foo</span>  <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">};</span>
+</pre>
+<p><tt class="docutils literal">Bar_public</tt>, <tt class="docutils literal">Bar_private</tt> and <tt class="docutils literal">Bar_protected</tt> are derived from <tt class="docutils literal">Foo</tt>.
+<tt class="docutils literal">Foo</tt> is the base class of <tt class="docutils literal">Bar_public</tt>, <tt class="docutils literal">Bar_private</tt> and <tt class="docutils literal">Bar_protected</tt>.</p>
+<ul class="simple">
+<li>In <tt class="docutils literal">Bar_public</tt>, public parts of <tt class="docutils literal">Foo</tt> are public,
+protected parts of <tt class="docutils literal">Foo</tt> are protected</li>
+<li>In <tt class="docutils literal">Bar_private</tt>, public and protected parts of <tt class="docutils literal">Foo</tt> are private</li>
+<li>In <tt class="docutils literal">Bar_protected</tt>, public and protected parts of <tt class="docutils literal">Foo</tt> are protected</li>
+</ul>
+</div>
+<div class="section" id="virtual-methods">
+<h2>4.2&nbsp;&nbsp;&nbsp;Virtual methods</h2>
+<p>A <tt class="docutils literal">virtual</tt> function allows derived classes to replace the implementation
+provided by the base class (yes, it is not automatic...). Non virtual methods
+are resolved statically (at compile time) while virtual methods are resolved
+dynamically (at run time).</p>
+<pre class="code c++ literal-block">
+<span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Foo</span><span class="p">(</span> <span class="kt">void</span> <span class="p">);</span>
+    <span class="kt">void</span> <span class="n">method1</span><span class="p">(</span> <span class="kt">void</span> <span class="p">);</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">method2</span><span class="p">(</span> <span class="kt">void</span> <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Bar</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Foo</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Bar</span><span class="p">(</span> <span class="kt">void</span> <span class="p">);</span>
+    <span class="kt">void</span> <span class="n">method1</span><span class="p">(</span> <span class="kt">void</span> <span class="p">);</span>
+    <span class="kt">void</span> <span class="n">method2</span><span class="p">(</span> <span class="kt">void</span> <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="n">Foo</span> <span class="o">*</span><span class="n">bar</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Bar</span><span class="p">();</span>
+<span class="n">bar</span><span class="o">-&gt;</span><span class="n">method1</span><span class="p">();</span>
+<span class="n">bar</span><span class="o">-&gt;</span><span class="n">method2</span><span class="p">();</span>
+</pre>
+<p>Make sure your destructor is virtual when you have derived class.</p>
+</div>
+<div class="section" id="abstract-classes">
+<h2>4.3&nbsp;&nbsp;&nbsp;Abstract classes</h2>
+<p>You can define pure virtual method that prohibits the base object to be
+instantiated. Derived classes need then to implement the virtual method.</p>
+<pre class="code c++ literal-block">
+<span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Foo</span><span class="p">(</span> <span class="kt">void</span> <span class="p">);</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">method</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Bar</span><span class="o">:</span> <span class="k">public</span> <span class="n">Foo</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Foo</span><span class="p">(</span> <span class="kt">void</span> <span class="p">);</span>
+    <span class="kt">void</span> <span class="n">method</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span> <span class="p">{</span> <span class="p">};</span>
+<span class="p">};</span>
+</pre>
+</div>
+<div class="section" id="multiple-inheritance">
+<h2>4.4&nbsp;&nbsp;&nbsp;Multiple inheritance</h2>
+<p>A class may inherit from multiple base classes but you have to be careful:</p>
+<pre class="code c++ literal-block">
+<span class="k">class</span> <span class="nc">Foo</span>               <span class="p">{</span> <span class="k">protected</span><span class="o">:</span> <span class="kt">int</span> <span class="n">data</span><span class="p">;</span> <span class="p">};</span>
+<span class="k">class</span> <span class="nc">Bar1</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Foo</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">};</span>
+<span class="k">class</span> <span class="nc">Bar2</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Foo</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">};</span>
+<span class="k">class</span> <span class="nc">Bar3</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Bar1</span><span class="p">,</span> <span class="k">public</span> <span class="n">Bar2</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="n">method</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span>
+    <span class="p">{</span>
+       <span class="n">data</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// !!! BAD
+</span>    <span class="p">}</span>
+<span class="p">};</span>
+</pre>
+<p>In class Bar3, the <tt class="docutils literal">data</tt> reference is ambiguous since it could refer to
+Bar1::data or Bar2::data. This problem is referred as the <strong>diamond
+problem</strong>. You can eliminete the problem by explicitely specifying the data
+origin (e.g. Bar1::data) or by using virtual inheritance in Bar1 and Bar2.</p>
+</div>
+<div class="section" id="id1">
+<h2>4.5&nbsp;&nbsp;&nbsp;Exercices</h2>
+<ol class="arabic">
+<li><p class="first">Write a <tt class="docutils literal">Bar</tt> class that inherits from a <tt class="docutils literal">Foo</tt> class and makes
+constructor and destructor methods to print something when called.</p>
+<p><strong>solution</strong>: <a class="reference external" href="sources/crash-course-4.1.cc">crash-course-4.1.cc</a></p>
+</li>
+<li><p class="first">Write a <tt class="docutils literal">foo</tt> function and make it called from a class that has
+a <tt class="docutils literal">foo</tt> method.</p>
+<p><strong>solution</strong>: <a class="reference external" href="sources/crash-course-4.2.cc">crash-course-4.2.cc</a></p>
+</li>
+<li><p class="first">Write a <tt class="docutils literal">Real</tt> base class and a derived <tt class="docutils literal">Integer</tt> class with all common
+operators (+,-,*,/)</p>
+<p><strong>solution</strong>: <a class="reference external" href="sources/crash-course-4.3.cc">crash-course-4.3.cc</a></p>
+</li>
+<li><p class="first">Write a <tt class="docutils literal">Singleton</tt> class such that only one object of this class can be
+created.</p>
+<p><strong>solution</strong>: <a class="reference external" href="sources/crash-course-4.4.cc">crash-course-4.4.cc</a></p>
+</li>
+<li><p class="first">Write a functor class</p>
+<p><strong>solution</strong>: <a class="reference external" href="sources/crash-course-4.5.cc">crash-course-4.5.cc</a></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="exceptions">
+<h1>5&nbsp;&nbsp;&nbsp;Exceptions</h1>
+<div class="section" id="the-zen-of-python">
+<h2>5.1&nbsp;&nbsp;&nbsp;The Zen of Python</h2>
+<p>(by Tim Peters)</p>
+<blockquote>
+<div class="line-block">
+<div class="line">Beautiful is better than ugly.</div>
+<div class="line">Explicit is better than implicit.</div>
+<div class="line">Simple is better than complex.</div>
+<div class="line">Complex is better than complicated.</div>
+<div class="line">Flat is better than nested.</div>
+<div class="line">Sparse is better than dense.</div>
+<div class="line">Readability counts.</div>
+<div class="line">Special cases aren't special enough to break the rules.</div>
+<div class="line">Although practicality beats purity.</div>
+<div class="line"><strong>Errors should never pass silently.</strong></div>
+<div class="line"><strong>Unless explicitly silenced.</strong></div>
+<div class="line">In the face of ambiguity, refuse the temptation to guess.</div>
+<div class="line">There should be one-- and preferably only one --obvious way to do it.</div>
+<div class="line">Although that way may not be obvious at first unless you're Dutch.</div>
+<div class="line">Now is better than never.</div>
+<div class="line">Although never is often better than <em>right</em> now.</div>
+<div class="line">If the implementation is hard to explain, it's a bad idea.</div>
+<div class="line">If the implementation is easy to explain, it may be a good idea.</div>
+<div class="line">Namespaces are one honking great idea -- let's do more of those!</div>
+</div>
+</blockquote>
+</div>
+<div class="section" id="catch-me-if-you-can">
+<h2>5.2&nbsp;&nbsp;&nbsp;Catch me if you can</h2>
+<p>You can catch any exception using the following structure:</p>
+<pre class="code c++ literal-block">
+<span class="k">try</span>
+<span class="p">{</span>
+    <span class="kt">float</span> <span class="o">*</span><span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">float</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="k">catch</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">bad_alloc</span> <span class="n">e</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+<p>If the raised exception is different from the ones you're catching, program
+will stop.</p>
+</div>
+<div class="section" id="creating-your-own-exception">
+<h2>5.3&nbsp;&nbsp;&nbsp;Creating your own exception</h2>
+<p>Creating a new exception is quite easy:</p>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;stdexcept&gt;
+</span>
+<span class="k">class</span> <span class="nc">Exception</span> <span class="o">:</span> <span class="k">public</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Exception</span><span class="p">()</span> <span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">&quot;Exception&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="p">};</span>
+<span class="p">};</span>
+</pre>
+</div>
+<div class="section" id="standard-exceptions">
+<h2>5.4&nbsp;&nbsp;&nbsp;Standard exceptions</h2>
+<p>There exist some standard exceptions that can be raised in some circumstances:</p>
+<p><tt class="docutils literal">#include &lt;stdexcept&gt;</tt></p>
+<ul class="simple">
+<li>bad_alloc</li>
+<li>bad_cast</li>
+<li>bad_exception</li>
+<li>bad_typeid</li>
+<li>logic_error<ul>
+<li>domain_error</li>
+<li>invalid_argument</li>
+<li>length_error</li>
+<li>out_of_range</li>
+</ul>
+</li>
+<li>runtime_error<ul>
+<li>range_error</li>
+<li>overflow_error</li>
+<li>underflow_error</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>5.5&nbsp;&nbsp;&nbsp;Exercices</h2>
+<ol class="arabic">
+<li><p class="first">How to handle a constructor that fails ?</p>
+<p><strong>solution</strong>: <a class="reference external" href="sources/crash-course-5.1.cc">crash-course-5.1.cc</a></p>
+</li>
+<li><p class="first">Write a program that raise 3 of the standard exceptions.</p>
+<p><strong>solution</strong>: <a class="reference external" href="sources/crash-course-5.2.cc">crash-course-5.2.cc</a></p>
+</li>
+<li><p class="first">Write a correct division function.</p>
+<p><strong>solution</strong>: <a class="reference external" href="sources/crash-course-5.3.cc">crash-course-5.3.cc</a></p>
+</li>
+<li><p class="first">Write a <tt class="docutils literal">Integer</tt> (positive) class with proper exception handling
+(<tt class="docutils literal">Overflow</tt>, <tt class="docutils literal">Underflow</tt>, <tt class="docutils literal">DivideByZero</tt>, etc.)</p>
+<p><strong>solution</strong>: <a class="reference external" href="sources/crash-course-5.4.cc">crash-course-5.4.cc</a></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="streams">
+<h1>6&nbsp;&nbsp;&nbsp;Streams</h1>
+<p>C++ provides input/output capability throught the iostream classes that provide
+the stream concept (iXXXstream for input and oXXXstream for output).</p>
+<div class="section" id="iostream-and-ios">
+<h2>6.1&nbsp;&nbsp;&nbsp;iostream and ios</h2>
+<p>Screen outputs and keyboard inputs may be handled using the iostream header
+file:</p>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
+<span class="p">{</span>
+
+    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">65</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>     <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">void</span> <span class="k">const</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">age</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="kt">double</span> <span class="n">f</span> <span class="o">=</span> <span class="mf">3.14159</span><span class="p">;</span>
+    <span class="n">cout</span><span class="p">.</span><span class="n">unsetf</span><span class="p">(</span><span class="n">ios</span><span class="o">::</span><span class="n">floatfield</span><span class="p">);</span>
+    <span class="n">cout</span><span class="p">.</span><span class="n">precision</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">f</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span><span class="p">.</span><span class="n">precision</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">f</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span><span class="p">.</span><span class="n">setf</span><span class="p">(</span><span class="n">ios</span><span class="o">::</span><span class="n">fixed</span><span class="p">,</span><span class="n">ios</span><span class="o">::</span><span class="n">floatfield</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">f</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Enter a number, or -1 to quit: &quot;</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">i</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;You entered &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="class-input-output">
+<h2>6.2&nbsp;&nbsp;&nbsp;Class input/output</h2>
+<p>You can implement a class input and output using friends functions:</p>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">friend</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span> <span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span> <span class="n">output</span><span class="p">,</span> <span class="n">Foo</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">that</span> <span class="p">)</span>
+    <span class="p">{</span> <span class="k">return</span> <span class="n">output</span> <span class="o">&lt;&lt;</span> <span class="n">that</span><span class="p">.</span><span class="n">_value</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">friend</span> <span class="n">std</span><span class="o">::</span><span class="n">istream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&gt;&gt;</span> <span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">istream</span> <span class="o">&amp;</span> <span class="n">input</span><span class="p">,</span> <span class="n">Foo</span><span class="o">&amp;</span> <span class="n">foo</span> <span class="p">)</span>
+    <span class="p">{</span> <span class="k">return</span> <span class="n">input</span> <span class="o">&gt;&gt;</span> <span class="n">fred</span><span class="p">.</span><span class="n">_value</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">double</span> <span class="n">_value</span><span class="p">;</span>
+<span class="p">};</span>
+</pre>
+</div>
+<div class="section" id="working-with-files">
+<h2>6.3&nbsp;&nbsp;&nbsp;Working with files</h2>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;fstream&gt;
+</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">ifstream</span> <span class="n">input</span><span class="p">(</span> <span class="n">filename</span> <span class="p">);</span>
+    <span class="c1">// std::ifstream input( filename, std::ios::in | std::ios::binary);
+</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">ofstream</span> <span class="n">output</span><span class="p">(</span> <span class="n">filename</span> <span class="p">);</span>
+    <span class="c1">// std::ofstream output( filename, std::ios::out | std::ios::binary);
+</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="working-with-strings">
+<h2>6.4&nbsp;&nbsp;&nbsp;Working with strings</h2>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;sstream&gt;
+</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">svalue</span> <span class="o">=</span> <span class="s">&quot;42.0&quot;</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">ivalue</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">istringstream</span> <span class="n">istream</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">ostringstream</span> <span class="n">ostream</span><span class="p">;</span>
+
+    <span class="n">istream</span><span class="p">.</span><span class="n">str</span><span class="p">(</span><span class="n">svalue</span><span class="p">);</span>
+    <span class="n">istream</span> <span class="o">&gt;&gt;</span> <span class="n">ivalue</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">svalue</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ivalue</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">ostream</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+    <span class="n">ostream</span> <span class="o">&lt;&lt;</span> <span class="n">ivalue</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ivalue</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ostream</span><span class="p">.</span><span class="n">str</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="id3">
+<h2>6.5&nbsp;&nbsp;&nbsp;Exercices</h2>
+<ol class="arabic simple">
+<li>Write an <tt class="docutils literal">itoa</tt> and an <tt class="docutils literal">atoi</tt> function</li>
+<li>Write a foo class with some attributes and write functions for writing to
+file and reading from file.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="templates">
+<h1>7&nbsp;&nbsp;&nbsp;Templates</h1>
+<p>Templates are special operators that specify that a class or a function is
+written for one or several generic types that are not yet known. The format for
+declaring function templates is:</p>
+<ul class="simple">
+<li>template &lt;typename identifier&gt; function_declaration;</li>
+<li>template &lt;typename identifier&gt; class_declaration;</li>
+</ul>
+<p>You can have several templates and to actually use a class or function
+template, you have to specify all unknown types:</p>
+<pre class="code c++ literal-block">
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="o">&gt;</span>
+<span class="n">T1</span> <span class="n">foo1</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T2</span><span class="o">&gt;</span>
+<span class="n">T1</span> <span class="n">foo2</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Foo3</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">};</span>
+
+
+<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">foo1</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="kt">float</span> <span class="n">b</span> <span class="o">=</span> <span class="n">foo2</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="n">Foo</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">;</span>
+</pre>
+<div class="section" id="template-parameters">
+<h2>7.1&nbsp;&nbsp;&nbsp;Template parameters</h2>
+<p>There are three possible template types:</p>
+<ul>
+<li><p class="first"><strong>Type</strong></p>
+<blockquote>
+<pre class="code c++ literal-block">
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>  <span class="n">T</span> <span class="n">foo</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">};</span>
+</pre>
+</blockquote>
+</li>
+<li><p class="first"><strong>Non-type</strong></p>
+<blockquote>
+<pre class="code c++ literal-block">
+<span class="k">template</span><span class="o">&lt;</span><span class="kt">int</span> <span class="n">N</span><span class="o">&gt;</span>  <span class="n">foo</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">};</span>
+</pre>
+</blockquote>
+</li>
+<li><p class="first"><strong>Template</strong></p>
+<blockquote>
+<pre class="code c++ literal-block">
+<span class="k">template</span><span class="o">&lt;</span> <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">foo</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">};</span>
+</pre>
+</blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="template-function">
+<h2>7.2&nbsp;&nbsp;&nbsp;Template function</h2>
+<pre class="code c++ literal-block">
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">T</span> <span class="n">max</span><span class="p">(</span> <span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span><span class="p">(</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span> <span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">
+#include &lt;sstream&gt;
+</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">max</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">2.5</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">max</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">2.5</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="template-class">
+<h2>7.3&nbsp;&nbsp;&nbsp;Template class</h2>
+<pre class="code c++ literal-block">
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+    <span class="n">T</span> <span class="n">_value</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Foo</span><span class="p">(</span> <span class="n">T</span> <span class="n">value</span> <span class="p">)</span> <span class="o">:</span> <span class="n">_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span> <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Foo</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">foo_int</span><span class="p">;</span>
+    <span class="n">Foo</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">foo_float</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="template-specialization">
+<h2>7.4&nbsp;&nbsp;&nbsp;Template specialization</h2>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+    <span class="n">T</span> <span class="n">_value</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Foo</span><span class="p">(</span> <span class="n">T</span> <span class="n">value</span> <span class="p">)</span> <span class="o">:</span> <span class="n">_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Generic constructor called&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="k">template</span> <span class="o">&lt;&gt;</span>
+<span class="k">class</span> <span class="nc">Foo</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kt">float</span> <span class="n">_value</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Foo</span><span class="p">(</span> <span class="kt">float</span> <span class="n">value</span> <span class="p">)</span> <span class="o">:</span> <span class="n">_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Specialized constructor called&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Foo</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">foo_int</span><span class="p">;</span>
+    <span class="n">Foo</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">foo_float</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="id4">
+<h2>7.5&nbsp;&nbsp;&nbsp;Exercices</h2>
+<ol class="arabic simple">
+<li>Write a generic swap function</li>
+<li>Write a generic point structure</li>
+<li>Write templated factorial, power and exponential functions
+(exp(x)  = sum_n x^n/n!, exp(-x) = 1/exp(x))</li>
+<li>Write a smart pointer class</li>
+</ol>
+</div>
+</div>
+<div class="section" id="standard-template-library">
+<h1>8&nbsp;&nbsp;&nbsp;Standard Template Library</h1>
+<div class="section" id="containers">
+<h2>8.1&nbsp;&nbsp;&nbsp;Containers</h2>
+<p>STL containers are template classes that implement various ways of storing
+elements and accessing them.</p>
+<p><strong>Sequence containers</strong>:</p>
+<ul class="simple">
+<li>vector</li>
+<li>deque</li>
+<li>list</li>
+</ul>
+<p><strong>Container adaptors</strong>:</p>
+<ul class="simple">
+<li>stack</li>
+<li>queue</li>
+<li>priority_queue</li>
+</ul>
+<p><strong>Associative containers</strong>:</p>
+<ul class="simple">
+<li>set</li>
+<li>multiset</li>
+<li>map</li>
+<li>multimap</li>
+<li>bitset</li>
+</ul>
+<p>See <a class="reference external" href="http://www.cplusplus.com/reference/stl/">http://www.cplusplus.com/reference/stl/</a> for more information.</p>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;vector&gt;
+#include &lt;map&gt;
+#include &lt;string&gt;
+</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+    <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+    <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">m</span><span class="p">;</span>
+    <span class="n">m</span><span class="p">[</span><span class="s">&quot;one&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">m</span><span class="p">[</span><span class="s">&quot;two&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">m</span><span class="p">[</span><span class="s">&quot;three&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="iterators">
+<h2>8.2&nbsp;&nbsp;&nbsp;Iterators</h2>
+<p>Iterators are a convebient tool to iterate over a container:</p>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;map&gt;
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">m</span><span class="p">;</span>
+    <span class="n">m</span><span class="p">[</span><span class="s">&quot;one&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">m</span><span class="p">[</span><span class="s">&quot;two&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">m</span><span class="p">[</span><span class="s">&quot;three&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">iter</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span> <span class="n">iter</span><span class="o">=</span><span class="n">m</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">iter</span> <span class="o">!=</span> <span class="n">m</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">iter</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;map[&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">iter</span><span class="o">-&gt;</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;] = &quot;</span>
+                  <span class="o">&lt;&lt;</span> <span class="n">iter</span><span class="o">-&gt;</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="algorithms">
+<h2>8.3&nbsp;&nbsp;&nbsp;Algorithms</h2>
+<p>Algorithms from the STL offer fast, robust, tested and maintained code for a lot
+of standard operations on ranged elements. Don't reinvent the wheel !</p>
+<p>Have a look at <a class="reference external" href="http://r0d.developpez.com/articles/algos-stl-fr/">http://r0d.developpez.com/articles/algos-stl-fr/</a> (French) and
+<a class="reference external" href="http://www.cplusplus.com/reference/algorithm/">http://www.cplusplus.com/reference/algorithm/</a> for an overview.</p>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+</span>
+<span class="kt">bool</span> <span class="n">compare</span><span class="p">(</span> <span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span> <span class="n">first</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span>  <span class="o">&amp;</span> <span class="n">second</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">first</span> <span class="o">&lt;</span> <span class="n">second</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="o">&amp;</span><span class="n">compare</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="id5">
+<h2>8.4&nbsp;&nbsp;&nbsp;Exercices</h2>
+<blockquote>
+<ol class="arabic simple">
+<li>Write a template stack class using the STL vector class</li>
+<li>Write a generic vector class with iterators and benchmark it againt the STL
+vector class</li>
+</ol>
+</blockquote>
+</div>
+</div>
+<div class="section" id="external-links">
+<h1>9&nbsp;&nbsp;&nbsp;External links</h1>
+<ul>
+<li><div class="first line-block">
+<div class="line">C++ FAQ — Frequently Asked Questions</div>
+<div class="line"><a class="reference external" href="http://www.parashift.com/c++-faq-lite/">http://www.parashift.com/c++-faq-lite/</a></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line">Boost free peer-reviewed portable C++ source libraries</div>
+<div class="line"><a class="reference external" href="http://www.boost.org/">http://www.boost.org/</a></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line">Bjarne Stroustrup homepage</div>
+<div class="line"><a class="reference external" href="http://www2.research.att.com/~bs/">http://www2.research.att.com/~bs/</a></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line">Complete reference on C++ Standard Library</div>
+<div class="line"><a class="reference external" href="http://en.cppreference.com/w/cpp">http://en.cppreference.com/w/cpp</a></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line">C++11 main features</div>
+<div class="line"><a class="reference external" href="http://en.wikipedia.org/wiki/C%2B%2B11">http://en.wikipedia.org/wiki/C%2B%2B11</a></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line">The definitive C++ book guide</div>
+<div class="line"><a class="reference external" href="http://stackoverflow.com/questions/388242/the-definitive-c-book-guide-and-list">http://stackoverflow.com/questions/388242/the-definitive-c-book-guide-and-list</a></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line">comp.lang.c++</div>
+<div class="line"><a class="reference external" href="http://groups.google.com/group/comp.lang.c++/topics">http://groups.google.com/group/comp.lang.c++/topics</a></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line">GNU make</div>
+<div class="line"><a class="reference external" href="http://www.gnu.org/s/make/manual/make.html">http://www.gnu.org/s/make/manual/make.html</a></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line">Les meilleurs cours et tutoriaux (in <strong>French</strong> as you may have already guessed...)</div>
+<div class="line"><a class="reference external" href="http://cpp.developpez.com/cours/">http://cpp.developpez.com/cours/</a></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</body>
+</html>

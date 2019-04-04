@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.8: http://docutils.sourceforge.net/" />
+<title>C++ exam</title>
+<link rel="stylesheet" href="stylesheet.css" type="text/css" />
+</head>
+<body>
+<div class="document" id="c-exam">
+<h1 class="title">C++ exam</h1>
+
+<p>Name:</p>
+<p>Surname:</p>
+<div class="section" id="extern">
+<h1>1&nbsp;&nbsp;&nbsp;Extern</h1>
+<p>The code below declares and defines variable x. <strong>True</strong> or <strong>False</strong> ?</p>
+<pre class="code c++ literal-block">
+<span class="k">extern</span> <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+</pre>
+</div>
+<div class="section" id="namespace">
+<h1>2&nbsp;&nbsp;&nbsp;Namespace</h1>
+<p>In namespace foo, the function bar can access the variable x also declared in
+namespace foo ? <strong>True</strong> or <strong>False</strong> ?</p>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="k">namespace</span> <span class="n">foo</span>
+<span class="p">{</span>
+    <span class="kt">void</span> <span class="n">bar</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">x</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="references">
+<h1>3&nbsp;&nbsp;&nbsp;References</h1>
+<p>What is the output of the following program ?</p>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="n">swap1</span><span class="p">(</span> <span class="kt">int</span>  <span class="n">a</span><span class="p">,</span> <span class="kt">int</span>  <span class="n">b</span> <span class="p">)</span> <span class="p">{</span> <span class="kt">int</span> <span class="n">c</span><span class="o">=</span><span class="n">a</span><span class="p">;</span> <span class="n">a</span><span class="o">=</span><span class="n">b</span><span class="p">;</span> <span class="n">b</span><span class="o">=</span><span class="n">c</span><span class="p">;</span> <span class="p">}</span>
+<span class="kt">void</span> <span class="n">swap2</span><span class="p">(</span> <span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">b</span> <span class="p">)</span> <span class="p">{</span> <span class="kt">int</span> <span class="n">c</span><span class="o">=*</span><span class="n">a</span><span class="p">;</span> <span class="o">*</span><span class="n">a</span><span class="o">=*</span><span class="n">b</span><span class="p">;</span> <span class="o">*</span><span class="n">b</span><span class="o">=</span><span class="n">c</span><span class="p">;</span> <span class="p">}</span>
+<span class="kt">void</span> <span class="n">swap3</span><span class="p">(</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">b</span> <span class="p">)</span> <span class="p">{</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">c</span><span class="o">=</span><span class="n">a</span><span class="p">;</span> <span class="n">a</span><span class="o">=</span><span class="n">b</span><span class="p">;</span> <span class="n">b</span><span class="o">=</span><span class="n">c</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">swap1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;a: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span> <span class="o">&lt;&lt;</span><span class="s">&quot;b: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">swap2</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;a: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span> <span class="o">&lt;&lt;</span><span class="s">&quot;b: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">swap3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;a: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span> <span class="o">&lt;&lt;</span><span class="s">&quot;b: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="inheritance">
+<h1>4&nbsp;&nbsp;&nbsp;Inheritance</h1>
+<p>What is the output of the program ?</p>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="k">struct</span> <span class="n">A</span> <span class="p">{</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">color</span><span class="p">;</span> <span class="p">};</span>
+<span class="k">struct</span> <span class="n">B</span> <span class="o">:</span> <span class="k">public</span> <span class="n">A</span> <span class="p">{</span> <span class="p">};</span>
+<span class="k">struct</span> <span class="n">C</span> <span class="o">:</span> <span class="k">public</span> <span class="n">A</span> <span class="p">{</span> <span class="p">};</span>
+<span class="k">struct</span> <span class="n">D</span> <span class="o">:</span> <span class="k">public</span> <span class="n">B</span><span class="p">,</span> <span class="k">public</span> <span class="n">C</span> <span class="p">{</span> <span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="n">D</span> <span class="n">d</span><span class="p">;</span>
+   <span class="n">d</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">color</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="id1">
+<h1>5&nbsp;&nbsp;&nbsp;Inheritance</h1>
+<p>How many times is &quot;Hello World&quot; printed by this program ?</p>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="k">struct</span> <span class="n">A</span> <span class="p">{</span> <span class="n">A</span><span class="p">()</span> <span class="p">{</span>  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Hello World&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span> <span class="p">};</span>
+<span class="k">struct</span> <span class="n">A1</span> <span class="o">:</span> <span class="k">public</span> <span class="n">A</span> <span class="p">{</span> <span class="p">};</span>
+<span class="k">struct</span> <span class="n">A2</span> <span class="o">:</span> <span class="k">public</span> <span class="n">A</span> <span class="p">{</span> <span class="p">};</span>
+<span class="k">struct</span> <span class="n">A3</span> <span class="o">:</span> <span class="k">public</span> <span class="n">A</span> <span class="p">{</span> <span class="p">};</span>
+<span class="k">struct</span> <span class="n">A4</span> <span class="o">:</span> <span class="k">public</span> <span class="n">A</span> <span class="p">{</span> <span class="p">};</span>
+<span class="k">struct</span> <span class="n">B</span> <span class="o">:</span> <span class="k">public</span> <span class="n">A1</span><span class="p">,</span> <span class="k">public</span> <span class="n">A2</span><span class="p">,</span> <span class="k">public</span> <span class="n">A3</span><span class="p">,</span> <span class="k">public</span> <span class="n">A4</span> <span class="p">{</span> <span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">B</span> <span class="n">b</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="initialization">
+<h1>6&nbsp;&nbsp;&nbsp;Initialization</h1>
+<p>What is the value of x, y &amp; z ?</p>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="k">struct</span> <span class="n">A</span>
+<span class="p">{</span>
+  <span class="n">A</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">n</span><span class="o">++</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">n</span><span class="o">++</span><span class="p">),</span> <span class="n">z</span><span class="p">(</span><span class="n">n</span><span class="o">++</span><span class="p">)</span> <span class="p">{}</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">z</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">Foo</span> <span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;x: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">f</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;y: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">f</span><span class="p">.</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;z: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">f</span><span class="p">.</span><span class="n">z</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="logic">
+<h1>7&nbsp;&nbsp;&nbsp;Logic</h1>
+<p>What value gets printed by the program?</p>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">++</span> <span class="o">&amp;&amp;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">y</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="constructors">
+<h1>8&nbsp;&nbsp;&nbsp;Constructors</h1>
+<p>Which lines below should not compile ?</p>
+<pre class="code c++ literal-block">
+<span class="k">struct</span> <span class="n">A</span>
+<span class="p">{</span>
+   <span class="n">A</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="o">:</span> <span class="n">n</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{}</span>
+   <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">A</span> <span class="n">a1</span><span class="p">;</span>
+  <span class="n">A</span> <span class="n">a2</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+  <span class="n">A</span> <span class="n">a3</span><span class="p">(</span><span class="n">a2</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="memory">
+<h1>9&nbsp;&nbsp;&nbsp;Memory</h1>
+<p>Which of the following implementations of the reset function is best for
+initializing the array to all zero.</p>
+<pre class="code c++ literal-block">
+<span class="k">class</span> <span class="nc">foo</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">foo</span><span class="p">(){</span>
+        <span class="n">reset</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">reset</span><span class="p">(){</span>
+
+    <span class="c1">// A // memset(x, 0, 50);
+</span>    <span class="c1">// B // memset(x, 0, sizeof(x));
+</span>    <span class="c1">// C // memset(x, 0, 50 * 4);
+</span>    <span class="c1">// D // memset(x, 0, 50 * sizeof(x));
+</span>    <span class="p">}</span>
+
+    <span class="kt">long</span> <span class="n">x</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+<span class="p">};</span>
+</pre>
+</div>
+<div class="section" id="id2">
+<h1>10&nbsp;&nbsp;&nbsp;References</h1>
+<p>What is the output of the program ?</p>
+<pre class="code c++ literal-block">
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// assume address of x is 0x822222222
+</span>  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+  <span class="kt">int</span><span class="o">*&amp;</span> <span class="n">rpx</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">rpx</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="end">
+<h1>11&nbsp;&nbsp;&nbsp;End</h1>
+</div>
+</div>
+</body>
+</html>
