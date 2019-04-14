@@ -1005,7 +1005,7 @@ See http://www.cplusplus.com/reference/stl/ for more information.
 Iterators
 ---------
 
-Iterators are a convebient tool to iterate over a container:
+Iterators are a convenient tool to iterate over a container:
 
 .. code:: c++
 
