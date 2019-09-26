@@ -255,7 +255,7 @@ Exercises
 Classes
 ===============================================================================
 
-A class migh be considered as an extended concept of a data structure: instead
+A class might be considered as an extended concept of a data structure: instead
 of holding only data, it can hold both data and functions. An object is an
 instantiation of a class. By default, all attributes and functions of a class
 are private (see below Access control). If you want a public default behavior,
@@ -408,7 +408,7 @@ access to a class.
      return 0
    }
 
-Exercices
+Exercises
 ---------
 
 1. Why the following code doesn't compile ?
@@ -540,11 +540,11 @@ A class may inherit from multiple base classes but you have to be careful:
 
 In class Bar3, the ``data`` reference is ambiguous since it could refer to
 Bar1::data or Bar2::data. This problem is referred as the **diamond
-problem**. You can eliminete the problem by explicitely specifying the data
+problem**. You can eliminate the problem by explicitly specifying the data
 origin (e.g. Bar1::data) or by using virtual inheritance in Bar1 and Bar2.
 
 
-Exercices
+Exercises
 ---------
 
 1. Write a ``Bar`` class that inherits from a ``Foo`` class and makes
@@ -665,7 +665,7 @@ There exist some standard exceptions that can be raised in some circumstances:
 
 
 
-Exercices
+Exercises
 ---------
 
 1. How to handle a constructor that fails ?
@@ -690,7 +690,7 @@ Exercices
 Streams
 ===============================================================================
 
-C++ provides input/output capability throught the iostream classes that provide
+C++ provides input/output capability through the iostream classes that provide
 the stream concept (iXXXstream for input and oXXXstream for output).
 
 iostream and ios
@@ -796,7 +796,7 @@ Working with strings
    }
 
 
-Exercices
+Exercises
 ---------
 
 1. Write an ``itoa`` and an ``atoi`` function
@@ -935,7 +935,7 @@ Template specialization
    }
 
 
-Exercices
+Exercises
 ---------
 
 1. Write a generic swap function
@@ -1059,10 +1059,10 @@ http://www.cplusplus.com/reference/algorithm/ for an overview.
    }
 
 
-Exercices
+Exercises
 ---------
  1. Write a template stack class using the STL vector class
- 2. Write a generic vector class with iterators and benchmark it againt the STL
+ 2. Write a generic vector class with iterators and benchmark it against the STL
     vector class
 
 
